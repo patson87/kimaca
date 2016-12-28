@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Kimaca - Waxbo</title>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/jquery/3.1.1/jquery.min.css"
+          th:href="@{webjars/jquery/3.1.1/jquery.min.css}"/>
+
+    <link href="../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(mgtRules)}">
+        <h2>Management Rules</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Creation Date</th>
+                <th>Status</th>
+                <th>List</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="mgtRule : ${mgtRules}">
+                <td th:text="${mgtRule.id}"></td>
+                <td th:text="${mgtRule.name}"></td>
+                <td th:text="${mgtRule.type}"></td>
+                <td th:text="${mgtRule.startDate}"></td>
+                <td th:text="${mgtRule.endDate}"></td>
+                <td th:text="${mgtRule.creationDate}"></td>
+                <td th:text="${mgtRule.status}"></td>
+                <td><a th:href="${'/mgtrule/' + mgtRule.id}">View rule</a></td>
+                <td><a th:href="${'/mgtrule/edit/' + mgtRule.id}">Edit rule</a></td>
+                <td><a th:href="${'/mgtrule/delete/' + mgtRule.id}">Delete rule</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <a href="/mgtrule/new">New Rule</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
